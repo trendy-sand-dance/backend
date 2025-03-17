@@ -1,4 +1,5 @@
-import Database from 'better-sqlite3'; 
+import Database from 'better-sqlite3';
+import fp from "fastify-plugin";
 import fs from 'fs';
 import path from 'node:path';
 import { FastifyInstance } from 'fastify';
@@ -37,7 +38,9 @@ async function dbConnector(fastify: FastifyInstance): Promise<void> {
 		console.log("Database created successfully!");
 	}
 	fastify.decorate("db", db);
-	console.log("Database attached to Fastify instance:", fastify.hasDecorator("db"), " = ", fastify.db);
+	if (db)
+		console.log("Database attached to Fastify instance:", fastify.hasDecorator("db"), " = ", fastify.db);
+	
 	fastify.addHook("onClose", (fastify, done) => {
 		if (db) {
 			db.close();
@@ -47,4 +50,4 @@ async function dbConnector(fastify: FastifyInstance): Promise<void> {
 };
 
 // default allows for custom name for importing
-export default dbConnector;
+export default fp(dbConnector);
