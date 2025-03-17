@@ -2,6 +2,7 @@ import Fastify, { FastifyInstance } from 'fastify';
 import { routes } from './routes/routes.js';
 import pluginCORS from '@fastify/cors';
 import closeWithGrace from 'close-with-grace';
+import dbConnector from './database/dbConnector';
 
 
 const ADDRESS: string = process.env.LISTEN_ADDRESS ? process.env.LISTEN_ADDRESS : '0.0.0.0';
@@ -27,6 +28,7 @@ fastify.register(pluginCORS), {
   credentials: true
 };
 
+fastify.register(dbConnector);
 fastify.register(routes);
 
 async function startServer() {
