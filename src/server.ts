@@ -1,8 +1,8 @@
 import Fastify, { FastifyInstance } from 'fastify';
-import { routes } from './routes/routes.js';
+import dbConnector from './database/dbConnector';
+import routes from './routes/routes';
 import pluginCORS from '@fastify/cors';
 import closeWithGrace from 'close-with-grace';
-import dbConnector from './database/dbConnector';
 
 
 const ADDRESS: string = process.env.LISTEN_ADDRESS ? process.env.LISTEN_ADDRESS : '0.0.0.0';
@@ -29,6 +29,7 @@ fastify.register(pluginCORS), {
 };
 
 fastify.register(dbConnector);
+console.log("Database connected and registered");
 fastify.register(routes);
 
 async function startServer() {

@@ -1,7 +1,15 @@
 import { FastifyInstance, FastifyRequest, FastifyReply } from 'fastify';
+import {registerUser} from "../controllers/registerUser.controller";
+import {getHome} from "../controllers/getHome.controller";
 
-export async function routes(fastify: FastifyInstance) {
-  fastify.get('/', async function(request: FastifyRequest, reply: FastifyReply) {
-    reply.send({ message: 'Hi from the Fastify server', method: request.method });
-  });
+
+async function routes(fastify: FastifyInstance) {
+
+	// get
+	fastify.get('/', getHome);
+
+	// post
+	fastify.post('/register', registerUser);
 };
+
+export default routes;

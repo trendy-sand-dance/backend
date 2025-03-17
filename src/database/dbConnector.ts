@@ -27,18 +27,17 @@ async function dbConnector(fastify: FastifyInstance): Promise<void> {
 			CREATE TABLE userTable (
 				id INTEGER PRIMARY KEY,
 				name STRING NOT NULL,
-				username STRING NOT NULL UNIQUE,
+				username STRING NOT NULL,
 				password STRING NOT NULL,
-				email STRING NOT NULL UNIQUE
+				email STRING NOT NULL
 			)
 		`;
 
 		db.exec(query);
 		console.log("Database created successfully!");
 	}
-	//fastify.decorate("db", db);
-	//console.log("Database attached to Fastify instance:", fastify.db);
-	//console.log("Database attached to Fastify instance:", fastify.hasDecorator("db"));
+	fastify.decorate("db", db);
+	console.log("Database attached to Fastify instance:", fastify.hasDecorator("db"), " = ", fastify.db);
 	fastify.addHook("onClose", (fastify, done) => {
 		if (db) {
 			db.close();
