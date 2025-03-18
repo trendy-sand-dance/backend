@@ -14,11 +14,9 @@ export async function registerUser(request: FastifyRequest, reply: FastifyReply)
 		const result = stmt.run(username, password, email, 0);
 		return reply.send({ message: `New user added: ${username}`, id: result.lastInsertRowid });
 		// remove id for client, only dev/backend
-		// return to homepage
 	}
 	catch (err) {
 		console.log(err);
 		return reply.send({ error: "Registration failed" });
-		// refresh registation page
 	}
 };

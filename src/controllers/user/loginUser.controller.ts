@@ -16,10 +16,8 @@ export async function loginUser(request: FastifyRequest, reply: FastifyReply): P
 			const result = stmt1.run(1, username, password);
 			reply.send({ message: `User logged in successfully: ${username}`});
 		}
-		// after success, go to logged in user profile page + give name + email of that user
 		else
 			reply.send({ error: "Invalid credentials" });
-			// refresh login page?
 	}
 	catch (err) {
 		console.log(err);

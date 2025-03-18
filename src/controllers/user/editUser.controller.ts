@@ -18,18 +18,13 @@ export async function editUser(request: FastifyRequest, reply: FastifyReply): Pr
 				if (result.changes > 0) {
 					console.log("User edited: " + username);
 					return reply.send({ message: `User successfully edited from: ${username} to: ${newUsername}` });
-					// return to profile page
 				}
-				else {
+				else
 					return reply.send({ error: "user status = not logged in" });
-					// return to edit page
-				}
 			}
 		}
-		else {
+		else
 			return reply.send({ error: "No matching user found or no changes made" });
-			// return to profile page
-		}
 	}
 	catch (err) {
 		console.log(err);

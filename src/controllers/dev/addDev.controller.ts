@@ -2,9 +2,12 @@ import { FastifyRequest, FastifyReply } from 'fastify';
 
 export async function addDev(request: FastifyRequest, reply: FastifyReply): Promise<void> {
 
-	const username = "default1";
-	const password = "1231";
-	const email = "default1@default.com";
+	//const username = "<username>";
+	//const password = "<password>";
+	//const email = "<email>";
+	const username = "<username>";
+	const password = "<password>";
+	const email = "<email>";
 	try {
 		const db = request.server.db;
 		if (!db) {

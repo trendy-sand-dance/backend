@@ -13,12 +13,10 @@ export async function getDashUser(request: FastifyRequest, reply: FastifyReply):
 		const user = stmt.get(username);
 		if (user) {
 			const email = user.email as { email: string};
-
 			reply.send({email});
 		}
 		else
 			reply.send({ error: "Invalid credentials/something aint right" });
-		// refresh login page?
 	}
 	catch (err) {
 		console.log(err);

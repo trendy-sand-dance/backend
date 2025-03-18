@@ -4,6 +4,8 @@ import { FastifyInstance } from 'fastify';
 import {getHome} from "../controllers/dev/getHome.controller";
 import {getDB} from "../controllers/dev/getDB.controller";
 import {addDev} from "../controllers/dev/addDev.controller";
+import {delDev} from "../controllers/dev/delDev.controller";
+import {statusDev} from "../controllers/dev/statusDev.controller";
 
 // user
 import {registerUser} from "../controllers/user/registerUser.controller";
@@ -26,18 +28,20 @@ async function routes(fastify: FastifyInstance) {
 	fastify.get('/', getHome);
 	fastify.get('/DB', getDB);
 	fastify.get('/add', addDev);
+	fastify.get('/del', delDev);
+	fastify.get('/stat', statusDev);
 
 	// user
 	fastify.post('/register', registerUser);
 	fastify.post('/login', loginUser);
 	fastify.post('/logout', logout);
-	fastify.post('/delete', deleteUser);
 	fastify.post('/edit', editUser);
+	fastify.delete('/delete', deleteUser);
 
 	// avatar
 	fastify.post('/addAvatar', addAvatar);
 	fastify.post('/editAvatar', editAvatar);
-	fastify.post('/deleteAvatar', deleteAvatar);
+	fastify.delete('/deleteAvatar', deleteAvatar);
 
 	// web
 	fastify.get('/dash/:username', getDashUser);

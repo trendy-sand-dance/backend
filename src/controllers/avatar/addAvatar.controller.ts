@@ -14,10 +14,8 @@ export async function addAvatar(request: FastifyRequest, reply: FastifyReply): P
 		const result = stmt.run(avatar, username, password);
 		if (!result) {
 			return reply.send({ error: "problem adding avatar"});
-			// return to add avatar page
 		}
 		return reply.send({ message: `${username} has a new avatar!` });
-		// return to profile page
 	}
 	return reply.send({ error: `adding avatar for ${username} failed` });
 };

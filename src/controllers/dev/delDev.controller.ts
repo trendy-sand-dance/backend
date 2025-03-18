@@ -1,8 +1,11 @@
 import { FastifyRequest, FastifyReply } from 'fastify';
 
-export async function deleteUser(request: FastifyRequest, reply: FastifyReply): Promise<void> {
+export async function delDev(request: FastifyRequest, reply: FastifyReply): Promise<void> {
 
-	const {username, password} = request.body as {username: string, password: string};
+	//const username = "<username>";
+	//const password = "<password>";
+	const username = "<username>";
+	const password = "<password>";
 	try {
 		const db = request.server.db;
 		if (!db) {
