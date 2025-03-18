@@ -4,7 +4,7 @@
 
 3) deleting for user + avatar.. use DELETE request?, when/how delete requests
 4) schemas - what for and where will they be- lets figure that out together? 
-
+5) editing/logged in blah blah
 
 
 **editing passwords dashboard etc**
@@ -38,3 +38,5 @@
 - dbconnector then routes
 
  ! must have both reply and request if using one of these, with only reply OR request, errors 
+
+ ! ? database queries, ? these avtually matter, the amount of them needs to match the values given in the run() that comes after
