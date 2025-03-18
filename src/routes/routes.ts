@@ -9,6 +9,7 @@ import {registerUser} from "../controllers/registerUser.controller";
 import {loginUser} from "../controllers/loginUser.controller";
 import {deleteUser} from "../controllers/deleteUser.controller";
 import {editUser} from "../controllers/editUser.controller";
+import {getDashUser} from "../controllers/getDashUser.controller";
 
 async function routes(fastify: FastifyInstance) {
 
@@ -21,6 +22,7 @@ async function routes(fastify: FastifyInstance) {
 	fastify.post('/login', loginUser);
 	fastify.post('/delete', deleteUser);
 	fastify.post('/edit', editUser);
+	fastify.post('/dash', getDashUser);
 };
 
 export default routes;
