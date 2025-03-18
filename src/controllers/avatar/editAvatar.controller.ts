@@ -14,8 +14,8 @@ export async function editAvatar(request: FastifyRequest, reply: FastifyReply): 
 	{
 		const stmt = db.prepare("UPDATE userTable SET avatar = ? WHERE username = ? AND password = ?");
 		const result = stmt.run(avatar, username, password);
-		return reply.send(`${username} has a new avatar!`);
+		return reply.send({ message: `${username} has a new avatar!` });
 		// return to profile page
 	}
-	return reply.send(`editing avatar for ${username} failed`);
-}
+	return reply.send({ error: `editing avatar for ${username} failed` });
+};

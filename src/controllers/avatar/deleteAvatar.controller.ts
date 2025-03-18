@@ -14,8 +14,8 @@ export async function deleteAvatar(request: FastifyRequest, reply: FastifyReply)
 	{
 		const stmt = db.prepare("UPDATE userTable SET avatar = ? WHERE username = ? AND password = ?");
 		const result = stmt.run(null, username, password);
-		return reply.send(`${username} has deleted their avatar!`);
+		return reply.send({ message: `${username} has deleted their avatar!` });
 		// return to profile page
 	}
-	return reply.send(`deleting avatar for ${username} failed`);
-}
+	return reply.send({ error: `deleting avatar for ${username} failed` });
+};

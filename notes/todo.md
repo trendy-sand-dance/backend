@@ -2,8 +2,9 @@
 
 **now working on (backend from template from now on)** 
 
-3) deleting for user + avatar.. use DELETE request?
+3) deleting for user + avatar.. use DELETE request?, when/how delete requests
 4) schemas - what for and where will they be- lets figure that out together? 
+
 
 
 **editing passwords dashboard etc**
