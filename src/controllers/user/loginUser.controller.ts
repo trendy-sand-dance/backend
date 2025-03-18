@@ -11,15 +11,18 @@ export async function loginUser(request: FastifyRequest, reply: FastifyReply): P
 		}
 		const stmt = db.prepare('SELECT * FROM userTable WHERE username = ? AND password = ?');
 		const user = stmt.get(username, password);
-		if (user) 
+		if (user)  {
+			const stmt1 = db.prepare("UPDATE userTable SET status = ? WHERE username = ? AND password = ?");
+			const result = stmt1.run(1, username, password);
 			reply.send({ message: `User logged in successfully: ${username}`});
-		// after success, go to logged in used profile page + give name + email of that user
+		}
+		// after success, go to logged in user profile page + give name + email of that user
 		else
 			reply.send({ error: "Invalid credentials" });
-		// refresh login page?
+			// refresh login page?
 	}
 	catch (err) {
 		console.log(err);
-		return reply.send("login page");
+		return reply.send({ error: "login page"});
 	}
 };

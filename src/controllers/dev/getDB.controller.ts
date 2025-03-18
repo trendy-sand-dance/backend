@@ -4,11 +4,10 @@ export async function getDB(request: FastifyRequest, reply: FastifyReply): Promi
 
 	const db = request.server.db;
 	if (!db)
-		console.log("no db!!!!!!!!!!");
-	else
-	console.log("WE GOT DB OUTSIDE DBCONNTROLLER");
+		return reply.send({ error: "Database connection error" });
+
 	const query = `SELECT * FROM userTable`;
 	const userTable = db.prepare(query).all();
-
 	return reply.send({ title: "Home", userTable });
+
 };

@@ -1,10 +1,10 @@
 import Fastify, { FastifyInstance } from 'fastify';
 import dbConnector from './database/dbConnector';
 import routes from './routes/routes';
+
 import pluginCORS from '@fastify/cors';
 import pluginFormbody from '@fastify/formbody';
 import closeWithGrace from 'close-with-grace';
-
 
 const ADDRESS: string = process.env.LISTEN_ADDRESS ? process.env.LISTEN_ADDRESS : '0.0.0.0';
 const PORT: number = process.env.LISTEN_PORT ? parseInt(process.env.LISTEN_PORT, 10) : 3000;

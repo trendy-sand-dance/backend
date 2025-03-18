@@ -4,17 +4,10 @@ import fs from 'fs';
 import path from 'node:path';
 import { FastifyInstance } from 'fastify';
 
-// use to check whether database (file) already exists
 const databasePath = path.join(__dirname, '/database.db');
 
-// -----------------------------------------------//
-// build new database table if not already exists
-// create database object whether db exists already or not, to use in controller functions
-// -----------------------------------------------//
 async function dbConnector(fastify: FastifyInstance): Promise<void> {
 	let db;
-
-	//console.log("time to build the database");
 
 	if (fs.existsSync(databasePath)) {
 		console.log("Database already exists at: ", databasePath);
@@ -27,12 +20,14 @@ async function dbConnector(fastify: FastifyInstance): Promise<void> {
 		const query = `
 			CREATE TABLE userTable (
 				id INTEGER PRIMARY KEY,
-				name STRING NOT NULL,
 				username STRING NOT NULL UNIQUE,
 				password STRING NOT NULL,
-				email STRING NOT NULL UNIQUE
+				email STRING NOT NULL UNIQUE,
+				avatar STRING,
+				status FALSE
 			)
 		`;
+// status, not null default to 0/false
 
 		db.exec(query);
 		console.log("Database created successfully!");
@@ -49,5 +44,4 @@ async function dbConnector(fastify: FastifyInstance): Promise<void> {
 	});
 };
 
-// default allows for custom name for importing
 export default fp(dbConnector);

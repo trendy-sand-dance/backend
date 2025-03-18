@@ -2,7 +2,7 @@ import { FastifyRequest, FastifyReply } from 'fastify';
 
 export async function registerUser(request: FastifyRequest, reply: FastifyReply): Promise<void> {
 
-	const { name, username, password, email } = request.body as { name: string, username: string, password: string, email: string };
+	const { username, password, email } = request.body as { username: string, password: string, email: string };
 	try {
 		const db = request.server.db;
 		if (!db) {
@@ -10,9 +10,10 @@ export async function registerUser(request: FastifyRequest, reply: FastifyReply)
 			return reply.send({ error: "Database connection error" });
 		}
 
-		const stmt = db.prepare("INSERT INTO userTable (username, password) VALUES (?, ?, ?, ?)");
-		const result = stmt.run(name, username, password, email);
-		return reply.send({ message: `New user added: ${name} with username: ${username}`, id: result.lastInsertRowid });
+		const stmt = db.prepare("INSERT INTO userTable (username, password, email, status) VALUES (?, ?, ?, ?)");
+		const result = stmt.run(username, password, email, 0);
+		return reply.send({ message: `New user added: ${username}`, id: result.lastInsertRowid });
+		// remove id for client, only dev/backend
 		// return to homepage
 	}
 	catch (err) {
