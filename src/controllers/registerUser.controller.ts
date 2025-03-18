@@ -1,21 +1,15 @@
 import { FastifyRequest, FastifyReply } from 'fastify';
-//import Database from "better-sqlite3";
-
-/**
- * 
- * 	
-	//const stmt = db.prepare("INSERT INTO userTable (name, email, username, password) VALUES (?, ?, ?, ?)");
-	//const result = stmt.run("sarah", "sarah", "sarah", "sarah");
-	//console.log(result);
-
-	this worked in dbConnector to add user manualy
- */
 
 export async function registerUser(request: FastifyRequest, reply: FastifyReply): Promise<void> {
+
+	 const name = "user";
+	 const username = "user1";
+	 const email = "user1@mail.com";
+	 const password = "user1pass";
+
+	// use actual frontend body from client
 	//const {name, username, email, password} = request.body;
-	//if (!name || !username || !email || !password) {
-	//	return reply.send({error: "All fields are required"});
-	//}
+	
 	try {
 		const db = request.server.db;
 		if (!db) {
@@ -24,11 +18,23 @@ export async function registerUser(request: FastifyRequest, reply: FastifyReply)
 		}
 
 		const stmt = db.prepare("INSERT INTO userTable (name, email, username, password) VALUES (?, ?, ?, ?)");
-		const result = stmt.run("flip", "flip", "flip", "flip");
-		return reply.send({ message: `New user added: flip`, id: result.lastInsertRowid });
+		const result = stmt.run(name, username, email, password);
+		return reply.send({ message: `New user added: ${username}`, id: result.lastInsertRowid });
 	}
 	catch (err) {
 		console.log(err);
 		return reply.send({ error: "Registration failed" });
 	}
 };
+
+
+ // if needed for testing
+// const name = "user";
+// const username = "user1";
+// const email = "user1@mail.com";
+// const password = "user1pass";
+
+// assuming below will be in the frontend?
+//if (!name || !username || !email || !password) {
+	//	return reply.send({error: "All fields are required"});
+	//}

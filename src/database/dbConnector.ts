@@ -28,9 +28,9 @@ async function dbConnector(fastify: FastifyInstance): Promise<void> {
 			CREATE TABLE userTable (
 				id INTEGER PRIMARY KEY,
 				name STRING NOT NULL,
-				username STRING NOT NULL,
+				username STRING NOT NULL UNIQUE,
 				password STRING NOT NULL,
-				email STRING NOT NULL
+				email STRING NOT NULL UNIQUE
 			)
 		`;
 
