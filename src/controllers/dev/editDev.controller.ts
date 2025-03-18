@@ -1,9 +1,11 @@
 import { FastifyRequest, FastifyReply } from 'fastify';
 
-export async function editUser(request: FastifyRequest, reply: FastifyReply): Promise<void> {
+export async function editDev(request: FastifyRequest, reply: FastifyReply): Promise<void> {
 
-	const {username, newUsername, password, newPassword, avatar} = request.body as {username: string, newUsername: string, password: string, newPassword: string, avatar: string};
-	
+	const username = "flop";
+	const newUsername = "flip";
+	const password = "hi";
+	const newPassword = "hoi";
 	try {
 		const db = request.server.db;
 		if (!db) {

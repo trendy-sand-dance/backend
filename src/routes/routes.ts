@@ -6,6 +6,7 @@ import {getDB} from "../controllers/dev/getDB.controller";
 import {addDev} from "../controllers/dev/addDev.controller";
 import {delDev} from "../controllers/dev/delDev.controller";
 import {changeStatusDev} from "../controllers/dev/changeStatusDev.controller";
+import {editDev} from "../controllers/dev/editDev.controller";
 
 // user
 import {registerUser} from "../controllers/user/registerUser.controller";
@@ -30,6 +31,7 @@ async function routes(fastify: FastifyInstance) {
 	fastify.get('/add', addDev);
 	fastify.get('/del', delDev);
 	fastify.get('/stat', changeStatusDev);
+	fastify.get('/eddy', editDev);
 
 	// user
 	fastify.post('/register', registerUser);

@@ -5,6 +5,7 @@
 3) deleting for user + avatar.. use DELETE request?, when/how delete requests
 4) schemas - what for and where will they be- lets figure that out together? 
 5) editing/logged in blah blah
+6) dev login and logout
 
 
 **editing passwords dashboard etc**
