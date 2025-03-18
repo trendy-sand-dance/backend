@@ -2,6 +2,7 @@ import Fastify, { FastifyInstance } from 'fastify';
 import dbConnector from './database/dbConnector';
 import routes from './routes/routes';
 import pluginCORS from '@fastify/cors';
+import pluginFormbody from '@fastify/formbody';
 import closeWithGrace from 'close-with-grace';
 
 
@@ -31,6 +32,7 @@ fastify.register(pluginCORS), {
 fastify.register(dbConnector);
 console.log("Database connected and registered");
 fastify.register(routes);
+fastify.register(pluginFormbody);
 
 async function startServer() {
   // Delay is the number of milliseconds for the graceful close to finish

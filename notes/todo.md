@@ -2,6 +2,9 @@
 
 **now working on (backend from template from now on)** 
 
+4) schemas - what for and where will they be- lets figure that out together? 
+
+
 5) connection between frontend + backend containers
 6) continue user things from the list below
 7) add pruning to clean rule mf

@@ -2,20 +2,9 @@ import { FastifyRequest, FastifyReply } from 'fastify';
 
 export async function editUser(request: FastifyRequest, reply: FastifyReply): Promise<void> {
 
-	const username = "user1";
-	const newUsername = "user2";
-	const password = "user1pass";
-	const newPassword = "user2pass";
-
-   // use actual frontend body from client
-   //const {name, username, email, password} = request.body;
-
+	// only if user is logged in
+	const {username, newUsername, password, newPassword} = request.body as {username: string, newUsername: string, password: string, newPassword: string};
 	try {
-		console.log("username: " + username);
-		console.log("new username: " + newUsername);
-		console.log("password: " + password);
-		console.log("new password: " + newPassword);
-		
 		const db = request.server.db;
 		if (!db) {
 			console.error("Database is not initialized");
@@ -30,10 +19,12 @@ export async function editUser(request: FastifyRequest, reply: FastifyReply): Pr
 			if (result.changes > 0) {
 				console.log("User edited: " + username);
 				return reply.send({ message: `User successfully edited from: ${username} to: ${newUsername}` });
+			// return to profile page
 			}
 		}
 		else {
 			return reply.send({ error: "No matching user found or no changes made" });
+			// return to profile page
 		}
 	}
 	catch (err) {
@@ -41,8 +32,3 @@ export async function editUser(request: FastifyRequest, reply: FastifyReply): Pr
 		return reply.send({ error: "Edit user failed" });
 	}
 };
-
-// assuming below will be in the frontend?
-//if (!username || !newUsername || !password || !newPassword) {
-	//	return reply.send({error: "All fields are required"});
-	//}

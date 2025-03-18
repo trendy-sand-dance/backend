@@ -40,7 +40,7 @@ async function dbConnector(fastify: FastifyInstance): Promise<void> {
 	fastify.decorate("db", db);
 	if (db)
 		console.log("Database attached to Fastify instance:", fastify.hasDecorator("db"), " = ", fastify.db);
-	
+
 	fastify.addHook("onClose", (fastify, done) => {
 		if (db) {
 			db.close();
