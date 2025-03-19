@@ -7,6 +7,7 @@
 5) editing/logged in blah blah
 6) dev login and logout
 
+7) edit user without being logged in, poss easier for testing without, consider for final version
 
 **editing passwords dashboard etc**
 - edituser ejs needs user specific info

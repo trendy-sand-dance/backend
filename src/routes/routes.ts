@@ -16,9 +16,9 @@ import {deleteUser} from "../controllers/user/deleteUser.controller";
 import {editUser} from "../controllers/user/editUser.controller";
 
 // avatar
-import {addAvatar} from "../controllers/avatar/addAvatar.controller";
-import {editAvatar} from "../controllers/avatar/editAvatar.controller";
-import {deleteAvatar} from "../controllers/avatar/deleteAvatar.controller";
+import {addAvatar} from "../controllers/user/avatar/addAvatar.controller";
+import {editAvatar} from "../controllers/user/avatar/editAvatar.controller";
+import {deleteAvatar} from "../controllers/user/avatar/deleteAvatar.controller";
 
 // web
 import {getDashUser} from "../controllers/web/getDashUser.controller";
