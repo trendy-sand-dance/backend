@@ -2,10 +2,10 @@ import { FastifyRequest, FastifyReply } from 'fastify';
 
 export async function editDev(request: FastifyRequest, reply: FastifyReply): Promise<void> {
 
-	const username = "flop";
-	const newUsername = "flip";
-	const password = "hi";
-	const newPassword = "hoi";
+	const username = "flip";
+	const newUsername = "flop";
+	const password = "hoi";
+	const newPassword = "hi";
 	try {
 		const db = request.server.db;
 		if (!db) {
