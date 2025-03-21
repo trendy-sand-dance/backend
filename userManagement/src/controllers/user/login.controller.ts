@@ -1,6 +1,6 @@
 import { FastifyRequest, FastifyReply } from 'fastify';
 
-export async function loginUser(request: FastifyRequest, reply: FastifyReply): Promise<void> {
+export async function login(request: FastifyRequest, reply: FastifyReply): Promise<void> {
 
 	const {username, password} = request.body as {username: string, password: string};
 	try {

@@ -24,17 +24,14 @@ async function dbConnector(fastify: FastifyInstance): Promise<void> {
 				password STRING NOT NULL,
 				email STRING NOT NULL UNIQUE,
 				avatar STRING,
-				status FALSE
+				status BOOLEAN DEFAULT FALSE
 			)
 		`;
-// status, not null default to 0/false
-
 		db.exec(query);
 		console.log("Database created successfully!");
 	}
 	fastify.decorate("db", db);
-	if (db)
-		console.log("Database attached to Fastify instance:", fastify.hasDecorator("db"), " = ", fastify.db);
+	console.log("Fastify instance has 'db':", fastify.hasDecorator('db'));
 
 	fastify.addHook("onClose", (fastify, done) => {
 		if (db) {

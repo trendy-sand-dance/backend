@@ -1,7 +1,9 @@
 services:
-  app:
+  database:
+    container_name: database_container
+    image: better-sqlite3
     build:
-      context: .
+      context: ./database
       target: development
     environment:
       LISTEN_PORT: 3000
@@ -9,34 +11,31 @@ services:
     ports:
       - "8000:3000"
     volumes:
-      - ./src:/app/src  # Mount local project folder into the container
+      - database_data:/app/database/src/database
+      - ./src:/app/database/src  # Mount local project folder into the container
       - /app/node_modules  # Prevent overwriting node_modules
     tty: true
     networks:
-      app-network:
-
-  database:
-    build:
-      context: https://github.com/trendy-sand-dance/databaseContainer.git
-      dockerfile: Dockerfile
-    image: better-sqlite3
-    container_name: database_container-db
-    volumes:
-      - database_data:/app/src/database
-    networks:
      - app-network
 
-  #user-service:
-  #  container_name: user_container-db
-  #  build:
-  #    context: https://github.com/trendy-sand-dance/userManagementContainer.git
-  #    dockerfile: Dockerfile
-  #  volumes:
-  #    - database_data:/app/src/database
-  #  depends_on:
-  #    - database
-  #  networks:
-  #    - app-network
+  user-service:
+    container_name: user_container
+    build:
+      context: ./userManagement
+      target: development
+    environment:
+      LISTEN_PORT: 3000
+      LISTEN_ADDRESS: '0.0.0.0'
+    ports:
+      - "8080:3000"
+    volumes:
+      - database_data:/app/database/src/database
+      - ./src:/app/userManagement/src  # Mount local project folder into the container
+      - /app/node_modules  # Prevent overwriting node_modules
+    depends_on:
+      - database
+    networks:
+      - app-network
 
 volumes:
   database_data:
