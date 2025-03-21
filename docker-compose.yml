@@ -11,31 +11,31 @@ services:
     ports:
       - "8000:3000"
     volumes:
-      - database_data:/app/database/src/database
+      - database_data:/app/database/src/database_files
       - ./src:/app/database/src  # Mount local project folder into the container
       - /app/node_modules  # Prevent overwriting node_modules
     tty: true
     networks:
      - app-network
 
-  user-service:
-    container_name: user_container
-    build:
-      context: ./userManagement
-      target: development
-    environment:
-      LISTEN_PORT: 3000
-      LISTEN_ADDRESS: '0.0.0.0'
-    ports:
-      - "8080:3000"
-    volumes:
-      - database_data:/app/database/src/database
-      - ./src:/app/userManagement/src  # Mount local project folder into the container
-      - /app/node_modules  # Prevent overwriting node_modules
-    depends_on:
-      - database
-    networks:
-      - app-network
+  #user-service:
+  #  container_name: user_container
+  #  build:
+  #    context: ./userManagement
+  #    target: development
+  #  environment:
+  #    LISTEN_PORT: 3000
+  #    LISTEN_ADDRESS: '0.0.0.0'
+  #  ports:
+  #    - "8080:3000"
+  #  volumes:
+  #    - database_data:/app/database/src/database_files
+  #    - ./src:/app/userManagement/src  # Mount local project folder into the container
+  #    - /app/node_modules  # Prevent overwriting node_modules
+  #  depends_on:
+  #    - database
+  #  networks:
+  #    - app-network
 
 volumes:
   database_data:

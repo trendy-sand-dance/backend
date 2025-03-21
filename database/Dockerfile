@@ -1,12 +1,13 @@
 # Stage 1: BUILD
 FROM node:22-slim AS build-stage
 
-WORKDIR /app/database
+WORKDIR /app
 
 COPY package.json package-lock.json tsconfig.json ./
 
 RUN npm install -D 
 
+#COPY src ./src
 COPY . .
 
 ARG LISTEN_ADDRESS="0.0.0.0"
@@ -20,13 +21,14 @@ RUN npm run build
 # Stage 2: FIGHT (production)
 FROM node:22-slim AS production
 
-WORKDIR /app/database
+WORKDIR /app
 
-COPY --from=build-stage /app/database/package*.json ./
+COPY --from=build-stage /app/package*.json ./
 
 RUN npm install --only=production
 
-COPY --from=build-stage /app/database/dist ./dist
+COPY --from=build-stage /app/dist ./dist
+COPY --from=build-stage /app/src ./src
 
 CMD ["npm", "run", "start"]
 

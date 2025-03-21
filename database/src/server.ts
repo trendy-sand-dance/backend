@@ -1,5 +1,5 @@
 import Fastify, { FastifyInstance } from 'fastify';
-import dbConnector from './database/dbConnector';
+import dbConnector from './database_files/dbConnector';
 import routes from './routes/routes';
 
 import pluginCORS from '@fastify/cors';
