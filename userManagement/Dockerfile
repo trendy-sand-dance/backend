@@ -1,7 +1,7 @@
 # Stage 1: BUILD
 FROM node:22-slim AS build-stage
 
-WORKDIR /app/userManagement
+WORKDIR /app
 
 COPY package.json package-lock.json tsconfig.json ./
 
@@ -18,11 +18,11 @@ ENV LISTEN_PORT=${LISTEN_PORT}
 RUN npm run build
 
 # Stage 2: FIGHT (production)
-FROM node:22-slim AS production
+FROM node:22-slim AS production 
 
-WORKDIR /app/userManagement
+WORKDIR /app
 
-COPY --from=build-stage /app/userManagement/package*.json ./
+COPY --from=build-stage /app/package*.json ./
 
 RUN npm install --only=production
 

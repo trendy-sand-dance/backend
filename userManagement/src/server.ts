@@ -1,7 +1,7 @@
 import Fastify, { FastifyInstance } from 'fastify';
 import routes from './routes/routes';
 
-import databasePlugin from './database';
+import databasePlugin from './database/database';
 import pluginCORS from '@fastify/cors';
 import pluginFormbody from '@fastify/formbody';
 import closeWithGrace from 'close-with-grace';

@@ -7,7 +7,6 @@ COPY package.json package-lock.json tsconfig.json ./
 
 RUN npm install -D 
 
-#COPY src ./src
 COPY . .
 
 ARG LISTEN_ADDRESS="0.0.0.0"
@@ -28,7 +27,6 @@ COPY --from=build-stage /app/package*.json ./
 RUN npm install --only=production
 
 COPY --from=build-stage /app/dist ./dist
-COPY --from=build-stage /app/src ./src
 
 CMD ["npm", "run", "start"]
 

@@ -11,31 +11,37 @@ services:
     ports:
       - "8000:3000"
     volumes:
-      - database_data:/app/database/src/database_files
-      - ./src:/app/database/src  # Mount local project folder into the container
+      - database_data:/app/src/database
+      - ./database/src:/app/src  # Mount local project folder into the container
       - /app/node_modules  # Prevent overwriting node_modules
     tty: true
     networks:
      - app-network
+    healthcheck:
+      test: ["CMD", "test", "-f", "/app/src/database/database.db"] # Check if the database file exists
+      interval: 5s
+      timeout: 3s
+      retries: 5
 
-  #user-service:
-  #  container_name: user_container
-  #  build:
-  #    context: ./userManagement
-  #    target: development
-  #  environment:
-  #    LISTEN_PORT: 3000
-  #    LISTEN_ADDRESS: '0.0.0.0'
-  #  ports:
-  #    - "8080:3000"
-  #  volumes:
-  #    - database_data:/app/database/src/database_files
-  #    - ./src:/app/userManagement/src  # Mount local project folder into the container
-  #    - /app/node_modules  # Prevent overwriting node_modules
-  #  depends_on:
-  #    - database
-  #  networks:
-  #    - app-network
+  user-service:
+    container_name: user_container
+    build:
+      context: ./userManagement
+      target: development
+    environment:
+      LISTEN_PORT: 3000
+      LISTEN_ADDRESS: '0.0.0.0'
+    ports:
+      - "8080:3000"
+    volumes:
+      - database_data:/app/src/database
+      - ./userManagement/src:/app/src  # Mount local project folder into the container
+      - /app/node_modules  # Prevent overwriting node_modules
+    depends_on:
+      database:
+       condition: service_healthy # Wait until the database service becomes healthy
+    networks:
+      - app-network
 
 volumes:
   database_data:
