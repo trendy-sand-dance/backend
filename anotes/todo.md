@@ -2,19 +2,15 @@
 
 **now working on (backend from template from now on)** 
 
-1) postman
 2) db in user container working with volume from database container
+1) postman
 3) squash + merge + joope dev ops - dont have settings option, do i follow the github instructions?
+4) sharing/sending/storing variables between back + front
+	4.1) schemas - what for and where will they be- lets figure that out together? 
 
-
-3) deleting for user + avatar.. use DELETE request?, when/how delete requests
-4) schemas - what for and where will they be- lets figure that out together? 
-5) editing/logged in blah blah
-6) dev login and logout
-
-7) edit user without being logged in, poss easier for testing without, consider for final version
 
 **editing passwords dashboard etc**
+3) deleting for user + avatar.. use DELETE request?, when/how delete requests
 - edituser ejs needs user specific info
 - deleteuser ejs needs user specific info
 - after login, pass user to dashboard for user specific dash needs user specific info
@@ -25,7 +21,6 @@
 - check this: id: result.lastInsertRowid i need to check this but i think naturally when a new element is added to the db table, the id increments, so to get that id number we can use something like the above
 - mees workfames/tools for password - hashing etc
 - create some variables for errors/logs like db not inited and the main messages for 	clients like db connection error/http error pages...
-
 
 
 
