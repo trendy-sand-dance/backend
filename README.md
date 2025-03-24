@@ -2,8 +2,10 @@
 
 # service template 
 This repo contains the basic layout of our services, it runs a node server.
+</div>
 
 
+<div align=left>
 ## Repo information
 Database holds two tables: user data and game data. 
 User management container only accesses the user data table
