@@ -16,8 +16,6 @@ async function dbConnector(fastify: FastifyInstance): Promise<void> {
 	else {
 		console.log("Creating new database at: ", databasePath);
 		db = new Database(databasePath, { verbose: console.log });
-
-
 		try {
 			db.exec(`
 				CREATE TABLE IF NOT EXISTS gameTable (
