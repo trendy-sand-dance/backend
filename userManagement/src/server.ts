@@ -30,7 +30,7 @@ fastify.register(pluginCORS), {
 };
 
 fastify.register(dbConnector);
-console.log("Database connected and registered");
+console.log("Database connected and registered, userTable connected");
 fastify.register(routes);
 fastify.register(pluginFormbody);
 

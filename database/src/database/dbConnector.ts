@@ -17,18 +17,31 @@ async function dbConnector(fastify: FastifyInstance): Promise<void> {
 		console.log("Creating new database at: ", databasePath);
 		db = new Database(databasePath, { verbose: console.log });
 
-		const query = `
-			CREATE TABLE userTable (
-				id INTEGER PRIMARY KEY,
-				username STRING NOT NULL UNIQUE,
-				password STRING NOT NULL,
-				email STRING NOT NULL UNIQUE,
-				avatar STRING,
-				status BOOLEAN DEFAULT FALSE
-			)
-		`;
-		db.exec(query);
-		console.log("Database created successfully!");
+
+		try {
+			db.exec(`
+				CREATE TABLE IF NOT EXISTS gameTable (
+					id INTEGER PRIMARY KEY,
+					random TEXT,
+					something TEXT
+				);
+			`);
+			console.log("Created gameTable successfully.");
+			
+			db.exec(`
+				CREATE TABLE IF NOT EXISTS userTable (
+					id INTEGER PRIMARY KEY,
+					username TEXT NOT NULL UNIQUE,
+					password TEXT NOT NULL,
+					email TEXT NOT NULL,
+					avatar TEXT,
+					status BOOLEAN DEFAULT FALSE
+				);
+			`);
+			console.log("Created userTable successfully.");
+		} catch (error) {
+			console.error("Error creating tables:", error);
+		}
 	}
 	fastify.decorate("db", db);
 	console.log("Fastify instance has 'db':", fastify.hasDecorator('db'));

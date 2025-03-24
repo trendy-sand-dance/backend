@@ -1,6 +1,6 @@
 import { FastifyRequest, FastifyReply } from 'fastify';
 
-export async function editDev(request: FastifyRequest, reply: FastifyReply): Promise<void> {
+export async function editUserDev(request: FastifyRequest, reply: FastifyReply): Promise<void> {
 
 	const username = "flip";
 	const newUsername = "flop";

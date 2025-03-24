@@ -1,6 +1,6 @@
 import { FastifyRequest, FastifyReply } from 'fastify';
 
-export async function addDev(request: FastifyRequest, reply: FastifyReply): Promise<void> {
+export async function addUserDev(request: FastifyRequest, reply: FastifyReply): Promise<void> {
 
 	//const username = "<username>";
 	//const password = "<password>";

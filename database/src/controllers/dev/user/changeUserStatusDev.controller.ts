@@ -1,6 +1,6 @@
 import { FastifyRequest, FastifyReply } from 'fastify';
 
-export async function delDev(request: FastifyRequest, reply: FastifyReply): Promise<void> {
+export async function changeUserStatusDev(request: FastifyRequest, reply: FastifyReply): Promise<void> {
 
 	//const username = "<username>";
 	//const password = "<password>";
@@ -16,19 +16,17 @@ export async function delDev(request: FastifyRequest, reply: FastifyReply): Prom
 		const user = stmt.get(username, password);
 		if (user) {
 			if (user.status == 1) {
-
-				const stmt = db.prepare("DELETE FROM userTable WHERE username = ? AND password = ?");
-				const result = stmt.run(username, password);
-				return reply.send({ message: `User successfully deleted: ${username}` });
+				const stmt = db.prepare("UPDATE userTable SET status = ? WHERE username = ? AND password = ?");
+				const result = stmt.run(0, username, password);
 			}
-			else
-				return reply.send({ error: "user status = not logged in" });
+			else if (user.status == 0) {
+				const stmt = db.prepare("UPDATE userTable SET status = ? WHERE username = ? AND password = ?");
+				const result = stmt.run(1, username, password);
+			}
 		}
-		else
-			reply.send({ error: "Invalid credentials / non-existent user" });
 	}
 	catch (err) {
 		console.log(err);
-		return reply.send({ error: "User deletion failed" });
+		return reply.send({ error: "Edit user failed" });
 	}
 };
