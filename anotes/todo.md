@@ -2,9 +2,8 @@
 
 **now working on (backend from template from now on)** 
 
-2) db in user container working with volume from database container
 1) postman
-3) squash + merge + joope dev ops - dont have settings option, do i follow the github instructions?
+3) squash + merge + joope dev ops - dont have settings option, do i follow the github instructions? ++ update_ branch, want gone...
 4) sharing/sending/storing variables between back + front
 	4.1) schemas - what for and where will they be- lets figure that out together? 
 
