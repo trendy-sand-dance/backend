@@ -4,7 +4,7 @@
 
 1) postman
 2) db in user container working with volume from database container
-3) squash + merge + joope dev ops
+3) squash + merge + joope dev ops - dont have settings option, do i follow the github instructions?
 
 
 3) deleting for user + avatar.. use DELETE request?, when/how delete requests
