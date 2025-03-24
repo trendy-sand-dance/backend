@@ -2,6 +2,11 @@
 
 **now working on (backend from template from now on)** 
 
+1) postman
+2) db in user container working with volume from database container
+3) squash + merge + joope dev ops
+
+
 3) deleting for user + avatar.. use DELETE request?, when/how delete requests
 4) schemas - what for and where will they be- lets figure that out together? 
 5) editing/logged in blah blah
