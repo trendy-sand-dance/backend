@@ -8,9 +8,9 @@ This repo contains the basic layout of our services, it runs a node server.
 Database holds two tables: user data and game data. 
 User management container only accesses the user data table
 
-** if you want to change the structure of the database table(s), you must delete the db file in the container: src/database/database.db 
+** if you want to change the structure of the database table(s), you must delete the db file in the database container: src/database/database.db 
 AND
-remove the volume so then see the changes and create a new database with the updated table(s)
+remove the volume to then see the changes and create a new database with the updated table(s)
 
 to continue to branch off and add to this repo:
 - password hashing
