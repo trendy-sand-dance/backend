@@ -1,9 +1,9 @@
-import fastifyPlugin from 'fastify-plugin';
+import databasePlugin from 'fastify-plugin';
 import Database from 'better-sqlite3';
 import fs from 'fs';
 import { FastifyInstance } from 'fastify';
 
-export default fastifyPlugin(async (fastify: FastifyInstance) => {
+export default databasePlugin(async (fastify: FastifyInstance) => {
 	  const dbPath = '/app/src/database/database.db';
 
   if (!fs.existsSync(dbPath)) {
