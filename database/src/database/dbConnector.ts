@@ -21,7 +21,8 @@ async function dbConnector(fastify: FastifyInstance): Promise<void> {
 				CREATE TABLE IF NOT EXISTS gameTable (
 					id INTEGER PRIMARY KEY,
 					random TEXT,
-					something TEXT
+					something TEXT,
+					element TEXT
 				);
 			`);
 			console.log("Created gameTable successfully.");
